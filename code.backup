@@ -1,0 +1,23 @@
+@import "str-replace";
+
+.custom-category-boxes .category-box .category-details .description p {
+  display: none;
+}
+@each $id, $description in $box_descriptions {
+  .custom-category-boxes .category-box {
+    &[data-category-id = "#{$id}"] {
+      .category-details .description:after {
+        content: "#{$description}";
+      }
+    }
+  }
+}
+
+
+  @each $id, $description in $string2 {
+    .custom-category-boxes .category-box[data-category-id = "#{$id}"] {
+        .category-details .description:after {
+          content: $description;
+        }
+      }
+    }

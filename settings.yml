@@ -1,0 +1,5 @@
+box_descriptions:
+  type: list
+  default: '2: "Welcome and get Started HERE"|5: "Share your GREAT artworks"|8: "NEW description"'
+  description:
+    en: 'Semicolon delimited in this order: Category Id;Description<br><b>Category Id:</b> The unique category number when navigating to the category. E.g. 5 in "/c/gallery/5"<br><b>Description:</b> A short description. Will only be shown on category boxes on the landing page'
