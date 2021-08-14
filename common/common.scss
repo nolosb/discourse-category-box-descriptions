@@ -1,32 +1,19 @@
-@import "str-split";
+@import "str-to-list";
 
 .custom-category-boxes .category-box .category-details .description p {
   display: none;
 }
 
-
-$string1: str-split("#{$box_descriptions}", '|');
-$string1: '(' + $string1 + ')';
-$string1: unquote($string1);
-@debug $string1;
-
-$string: 2 "Welcome and get Started WITH THIS", 5 "Share your GREAT artworks";
-  @each $id, $description in $string  {
-    .custom-category-boxes .category-box[data-category-id = "#{$id}"] {
-        .category-details .description:after {
-          content: $description;
-        }
-      }
+$list: str-to-list("#{$box_descriptions}", "|");
+$nested-list: ();
+@each $item in $list {
+  $item: str-to-list("#{$item}", ";");
+  $nested-list: append($nested-list, $item);
+}
+@each $id, $description in $nested-list {
+  .custom-category-boxes .category-box[data-category-id="#{$id}"] {
+    .category-details .description:after {
+      content: $description;
     }
-
-      
-      .custom-category-boxes .category-box[data-category-id = "8"] {
-          .category-details .description:after {
-            content: $string1;
-          }
-        }
-        .custom-category-boxes .category-box[data-category-id = "7"] {
-          .category-details .description:after {
-            content: "#{$string2}";
-          }
-        }
+  }
+}
